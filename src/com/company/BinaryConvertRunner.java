@@ -14,7 +14,7 @@ public class BinaryConvertRunner {
 
     public void run(){
         Scanner sc = getScanner(args);
-        System.out.println("Lookup result for and: "));
+        System.out.println("Lookup result for and: ");
         System.out.println(InstructionLookup.getOpCode("and"));
         while (sc.hasNextLine()){
             System.out.println(sc.nextLine());
