@@ -1,0 +1,4 @@
+addi $s2, $t0, 32767 
+addi $s2, $t0, -1 
+addi $s2, $t0, 0 
+addi $s2, $t0, 8 

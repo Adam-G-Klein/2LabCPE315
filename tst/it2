@@ -1,0 +1,8 @@
+or $a0, $a1, $a2 ##3#comment
+and $a0, $s0, $t1
+# comment # comment
+or $s0, $s1, $s2
+and $s0, $0, $0
+#comment 
+add $t0, $0, $0 #comment
+sub $t7, $s2, $t0
