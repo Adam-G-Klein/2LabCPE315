@@ -18,11 +18,13 @@ public class InstructionFactory {
         String ins = getInsFromLine(instructionLine);
         switch(ins){
             case "and", "or", "add", "sub", "slt" :
-                return new RTypeInstruction(instructionLine);
+                return new RTypeInstruction(ins, instructionLine);
             case "addi":
-                return new ITypeInstruction(instructionLine);
-            case "j", "jal", "jr":
-                return new JTypeInstruction(instructionLine);
+                return new ITypeInstruction(ins, instructionLine);
+            case "j", "jal":
+                return new JTypeInstruction(ins, instructionLine);
+            case "jr":
+                return new JrTypeInstruction(ins, instructionLine);
             default:
                 return new InvalidInstruction(ins);
         }
@@ -31,6 +33,7 @@ public class InstructionFactory {
 
     public static String getInsFromLine(String instructionLine){
         if(instructionLine == null || instructionLine.isBlank()){
+            // return null to get to invalid instruction case
             return null;
         }
         if(instructionLine.charAt(0) == 'j') {

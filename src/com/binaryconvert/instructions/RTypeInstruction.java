@@ -14,10 +14,9 @@ public class RTypeInstruction implements Instruction {
     private String rs;
     private String rt;
 
-    public RTypeInstruction(String insStr){
+    public RTypeInstruction(String ins, String insStr){
+        this.ins = ins;
         String[] tokens = insStr.split(",");
-        String[] insTokens = tokens[0].split("\\$");
-        ins = insTokens[0];
         rd = tokens[0].substring(ins.length());
         rs = tokens[1];
         rt = tokens[2];

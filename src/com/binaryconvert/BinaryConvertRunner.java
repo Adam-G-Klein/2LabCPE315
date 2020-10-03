@@ -31,8 +31,8 @@ public class BinaryConvertRunner {
             strippedLine = processLabels(pcCount, strippedLine);
             if(!strippedLine.isBlank()) {
                 rawInstructions.add(strippedLine);
+                pcCount += 1;
             }
-            pcCount += 1;
         }
         pcCount = 0;
         for(String rawLine : rawInstructions){

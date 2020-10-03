@@ -1,5 +1,6 @@
 package com.binaryconvert.instructions;
 
+import com.binaryconvert.DecimalToBinary;
 import com.binaryconvert.InstructionLookup;
 
 public class ITypeInstruction implements Instruction {
@@ -14,11 +15,10 @@ public class ITypeInstruction implements Instruction {
     private String rt;
     private String imm;
 
-    public ITypeInstruction(String insStr){
+    public ITypeInstruction(String ins, String insStr){
+        this.ins = ins;
         String stripped = insStr.replaceAll("\\s+","");
         String[] tokens = stripped.split(",");
-        String[] insTokens = tokens[0].split("\\$");
-        ins = insTokens[0];
         rt = tokens[0].substring(ins.length());
         rs = tokens[1];
         imm = tokens[2];
@@ -32,9 +32,7 @@ public class ITypeInstruction implements Instruction {
         // This doesn't work. please fix it Brandon lmao
         // it still has spaces instead of 0's, and -1 makes
         // more than 16 bits
-        res.append(String.format("%16s",
-                Integer.toBinaryString(Integer.parseInt(imm))
-                        .replace(' ', '0')));
+        res.append(DecimalToBinary.convertToBinary(imm, 16));
         return res.toString();
     }
 
