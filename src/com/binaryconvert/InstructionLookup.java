@@ -60,6 +60,13 @@ public class InstructionLookup {
         put("$s7", "010111");
         put("$t8", "011000");
         put("$t9", "011001");
+        put("$k0", "11010");
+        put("$k1", "11011");
+        put("$gp", "11100");
+        put("$sp", "11101");
+        put("$fp", "11110");
+        put("$ra", "11111");
+
     }};
 
     public static String getOpCode(String ins){
