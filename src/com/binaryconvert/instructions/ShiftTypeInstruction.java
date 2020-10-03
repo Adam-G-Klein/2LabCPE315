@@ -32,7 +32,7 @@ public class ShiftTypeInstruction implements Instruction {
         res.append(rs + " ");
         res.append(InstructionLookup.getReg(rt) + " ");
         res.append(InstructionLookup.getReg(rd) + " ");
-        res.append(String.format("%6s",
+        res.append(String.format("%5s",
                 Integer.toBinaryString(Integer.parseInt(shamt))
                         .replace(' ', '0')) + " ");
         res.append("000000");
