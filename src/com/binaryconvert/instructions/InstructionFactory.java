@@ -14,13 +14,15 @@ public class InstructionFactory {
     private static final List<String> shiftTypes = Arrays.asList("sll");
     private static final List<String> memTypes = Arrays.asList("sw", "lw");
 
-    public static Instruction createInstruction(String instructionLine){
+    public static Instruction createInstruction(Integer pcCount, String instructionLine){
         String ins = getInsFromLine(instructionLine);
         switch(ins){
             case "and", "or", "add", "sub", "slt" :
                 return new RTypeInstruction(instructionLine);
-            case "addi" :
+            case "addi":
                 return new ITypeInstruction(instructionLine);
+            case "j", "jal", "jr":
+                return new JTypeInstruction(instructionLine);
             default:
                 return new InvalidInstruction(ins);
         }
@@ -32,8 +34,13 @@ public class InstructionFactory {
             return null;
         }
         if(instructionLine.charAt(0) == 'j') {
-            // implement j type instruction parsing
-            return null;
+            if(instructionLine.indexOf("jal") == 0){
+                return "jal";
+            }
+            if(instructionLine.indexOf("jr") == 0){
+                return "jr";
+            }
+            return "j";
         } else {
             // pretty sure this works for all cases if it's not j type
             // please do check me though

@@ -6,7 +6,7 @@ import com.binaryconvert.instructions.RTypeInstruction;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.util.*;
 
 public class BinaryConvertRunner {
 
@@ -16,29 +16,49 @@ public class BinaryConvertRunner {
         this.args = args;
     }
 
+    private List<String> rawInstructions = new ArrayList<>();
+    private List<Instruction> parsedInstructions = new ArrayList<>();
+
     public void run(){
         Scanner sc = getScanner(args);
+        int pcCount = 0;
+        // first pass
         while (sc.hasNextLine()){
             String rawLine = sc.nextLine();
-            System.out.println("Line: " + rawLine);
             // get everything before the comment
             String strippedLine = stripComments(rawLine.replaceAll("\\s+",""));
-            System.out.println("Comment Stripped Line: " + strippedLine);
-            strippedLine = processLabels(strippedLine);
-
-
-
-            if(!strippedLine.isBlank()){
-                Instruction ins = InstructionFactory.createInstruction(strippedLine);
+            // returns the line without the label
+            strippedLine = processLabels(pcCount, strippedLine);
+            if(!strippedLine.isBlank()) {
+                rawInstructions.add(strippedLine);
+            }
+            pcCount += 1;
+        }
+        pcCount = 0;
+        for(String rawLine : rawInstructions){
+            // get everything before the comment
+            System.out.println("Stripped Line: " + rawLine);
+            if(!rawLine.isBlank()){
+                Instruction ins = InstructionFactory.createInstruction(pcCount, rawLine);
                 System.out.println("Obj: " + ins.toString());
                 System.out.println("Binary: " + ins.toBinary());
-                //output binary to outfile here
+                parsedInstructions.add(ins);
+                pcCount += 1;
             }
         }
     }
 
-    private String processLabels(String inString){
-        return inString;
+    private String processLabels(int pcCount, String inString){
+        int colonIndex = inString.indexOf(":");
+        if(colonIndex == -1){
+            return inString;
+        } else {
+            String label = inString.substring(0, colonIndex);
+            System.out.println("New Label Entry: " + label + ", " + pcCount);
+            LabelTable.putLabel(label, pcCount);
+            String outString = inString.substring(colonIndex + 1);
+            return outString;
+        }
     }
 
     private String stripComments(String strippedLine){
