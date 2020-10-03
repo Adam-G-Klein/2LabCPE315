@@ -14,12 +14,12 @@ public class MemTypeInstruction implements Instruction {
     private String rt;
     private String offset;
 
-    public ShiftTypeInstruction(String insStr){
+    public MemTypeInstruction(String insStr){
         String[] tokens = insStr.split(",");
         String[] insTokens = tokens[0].split("\\$");
         ins = insTokens[0];
         rt = tokens[0].substring(ins.length());
-        String[] subTokens = tokens[1].split("(");
+        String[] subTokens = tokens[1].split("\\(");
         offset = subTokens[0];
         rs = subTokens[1].substring(subTokens[1].length() - 1);
 

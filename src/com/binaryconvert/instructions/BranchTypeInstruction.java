@@ -23,7 +23,8 @@ public class BranchTypeInstruction implements Instruction {
         rs = tokens[0].substring(ins.length());
         rt = tokens[1];
         label = tokens[2];
-        offset = LabelTable.getLabel(label) - pcCount;
+        // add one to pcCount to point to instruction after this one
+        offset = LabelTable.getLabel(label) - (pcCount + 1);
     }
 
     public String toBinary(){
