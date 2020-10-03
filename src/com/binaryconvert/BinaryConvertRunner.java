@@ -38,17 +38,13 @@ public class BinaryConvertRunner {
         pcCount = 0;
         for(String rawLine : rawInstructions){
             // get everything before the comment
-            System.out.println("Stripped Line: " + rawLine);
             if(!rawLine.isBlank()){
                 Instruction ins = InstructionFactory.createInstruction(pcCount, rawLine);
-                System.out.println("Obj: " + ins.toString());
-                System.out.println("Binary: " + ins.toBinary());
                 parsedInstructions.add(ins);
                 pcCount += 1;
             }
         }
 
-        System.out.println("\n Final output: \n");
         for(Instruction ins : parsedInstructions){
             System.out.println(ins.toBinary());
             if(ins instanceof InvalidInstruction)
@@ -62,7 +58,6 @@ public class BinaryConvertRunner {
             return inString;
         } else {
             String label = inString.substring(0, colonIndex);
-            System.out.println("New Label Entry: " + label + ", " + pcCount);
             LabelTable.putLabel(label, pcCount);
             String outString = inString.substring(colonIndex + 1);
             return outString;
