@@ -24,7 +24,7 @@ public class JTypeInstruction implements Instruction {
         res.append(InstructionLookup.getOpCode(ins) + " ");
         res.append(DecimalToBinary.convertToBinary(
                 LabelTable.getLabel(target).toString(),
-                24));
+                26));
         return res.toString();
     }
 

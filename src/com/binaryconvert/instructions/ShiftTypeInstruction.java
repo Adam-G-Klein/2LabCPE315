@@ -1,5 +1,6 @@
 package com.binaryconvert.instructions;
 
+import com.binaryconvert.DecimalToBinary;
 import com.binaryconvert.InstructionLookup;
 
 public class ShiftTypeInstruction implements Instruction {
@@ -15,10 +16,9 @@ public class ShiftTypeInstruction implements Instruction {
     private String rt;
     private String shamt;
 
-    public ShiftTypeInstruction(String insStr){
+    public ShiftTypeInstruction(String ins, String insStr){
+        this.ins = ins;
         String[] tokens = insStr.split(",");
-        String[] insTokens = tokens[0].split("\\$");
-        ins = insTokens[0];
         rd = tokens[0].substring(ins.length());
         rs = "00000";
         rt = tokens[1];
@@ -32,10 +32,8 @@ public class ShiftTypeInstruction implements Instruction {
         res.append(rs + " ");
         res.append(InstructionLookup.getReg(rt) + " ");
         res.append(InstructionLookup.getReg(rd) + " ");
-        res.append(String.format("%5s",
-                Integer.toBinaryString(Integer.parseInt(shamt))
-                        .replace(' ', '0')) + " ");
-        res.append("000000");
+        res.append(DecimalToBinary.convertToBinary(shamt, 5));
+        res.append(InstructionLookup.getFunc(ins) + " ");
         return res.toString();
     }
 

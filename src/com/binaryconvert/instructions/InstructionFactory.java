@@ -25,6 +25,10 @@ public class InstructionFactory {
                 return new JTypeInstruction(ins, instructionLine);
             case "jr":
                 return new JrTypeInstruction(ins, instructionLine);
+            case "beq", "bne":
+                return new BranchTypeInstruction(ins, instructionLine, pcCount);
+            case "sll":
+                return new ShiftTypeInstruction(ins, instructionLine);
             default:
                 return new InvalidInstruction(ins);
         }

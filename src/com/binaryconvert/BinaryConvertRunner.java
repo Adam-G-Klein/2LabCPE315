@@ -46,6 +46,11 @@ public class BinaryConvertRunner {
                 pcCount += 1;
             }
         }
+
+        System.out.println("\n Final output: \n");
+        for(Instruction ins : parsedInstructions){
+            System.out.println(ins.toBinary());
+        }
     }
 
     private String processLabels(int pcCount, String inString){

@@ -1,4 +1,12 @@
+bne $s0, $t1, label2
+label1: #comnajdskgjdng
 or $a0, $a1, $a2
-and $a0, $s0, $t1
+#dshguheheuhdhvhv ###
+
+bne $s3, $t0, label1
+beq $s3, $t0, label2
+
+label2:and $a0, $s0, $t1 
+
 or $s0, $s1, $s2
 and $s0, $0, $0
