@@ -1,8 +1,4 @@
-package com.binaryconvert.instructions;
-
-import com.binaryconvert.DecimalToBinary;
-import com.binaryconvert.InstructionLookup;
-import com.binaryconvert.LabelTable;
+package com.binaryconvert;
 
 public class BranchTypeInstruction implements Instruction {
     /***

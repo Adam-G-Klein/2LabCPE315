@@ -1,10 +1,5 @@
 package com.binaryconvert;
 
-import com.binaryconvert.instructions.Instruction;
-import com.binaryconvert.instructions.InstructionFactory;
-import com.binaryconvert.instructions.InvalidInstruction;
-import com.binaryconvert.instructions.RTypeInstruction;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;

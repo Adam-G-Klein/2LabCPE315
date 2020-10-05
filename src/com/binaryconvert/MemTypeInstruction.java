@@ -1,6 +1,4 @@
-package com.binaryconvert.instructions;
-
-import com.binaryconvert.InstructionLookup;
+package com.binaryconvert;
 
 public class MemTypeInstruction implements Instruction {
     /***

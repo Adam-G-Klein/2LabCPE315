@@ -1,4 +1,4 @@
-package com.binaryconvert.instructions;
+package com.binaryconvert;
 
 public interface Instruction {
     public String toBinary();

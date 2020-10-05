@@ -1,7 +1,4 @@
-package com.binaryconvert.instructions;
-
-import com.binaryconvert.DecimalToBinary;
-import com.binaryconvert.InstructionLookup;
+package com.binaryconvert;
 
 public class ITypeInstruction implements Instruction {
     /***

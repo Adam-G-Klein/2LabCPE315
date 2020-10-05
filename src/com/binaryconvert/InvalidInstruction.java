@@ -1,4 +1,4 @@
-package com.binaryconvert.instructions;
+package com.binaryconvert;
 
 public class InvalidInstruction implements Instruction{
     private String ins;
