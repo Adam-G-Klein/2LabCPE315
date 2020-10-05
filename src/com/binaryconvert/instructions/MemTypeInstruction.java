@@ -30,9 +30,7 @@ public class MemTypeInstruction implements Instruction {
         res.append(InstructionLookup.getOpCode(ins) + " ");
         res.append(rs + " ");
         res.append(InstructionLookup.getReg(rt) + " ");
-        res.append(String.format("%16s",
-                Integer.toBinaryString(Integer.parseInt(offset))
-                        .replace(' ', '0')) + " ");
+        res.append(DecimalToBinary.convertToBinary(offset, 16));
         return res.toString();
     }
 
