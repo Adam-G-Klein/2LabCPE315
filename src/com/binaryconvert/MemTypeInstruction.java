@@ -1,4 +1,3 @@
-package com.binaryconvert;
 
 public class MemTypeInstruction implements Instruction {
     /***
@@ -12,20 +11,19 @@ public class MemTypeInstruction implements Instruction {
     private String rt;
     private String offset;
 
-    public MemTypeInstruction(String insStr){
+    public MemTypeInstruction(String ins, String insStr){
+        this.ins = ins;
         String[] tokens = insStr.split(",");
-        String[] insTokens = tokens[0].split("\\$");
-        ins = insTokens[0];
         rt = tokens[0].substring(ins.length());
         String[] subTokens = tokens[1].split("\\(");
         offset = subTokens[0];
-        rs = subTokens[1].substring(subTokens[1].length() - 1);
+        rs = subTokens[1].substring(subTokens[1].length());
 
     }
 
     public String toBinary(){
         StringBuilder res = new StringBuilder();
-        res.append(InstructionLookup.getOpCode(ins) + " ");
+        res.append(InstructionLookup.getOpCode(ins));
         res.append(rs + " ");
         res.append(InstructionLookup.getReg(rt) + " ");
         res.append(DecimalToBinary.convertToBinary(offset, 16));
@@ -34,7 +32,7 @@ public class MemTypeInstruction implements Instruction {
 
     @Override
     public String toString() {
-        return "ShiftTypeInstruction{" +
+        return "MemTypeInstruction{" +
                 "ins='" + ins + '\'' +
                 ", rs='" + rs + '\'' +
                 ", rt='" + rt + '\'' +

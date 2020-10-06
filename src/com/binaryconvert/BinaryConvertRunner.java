@@ -1,8 +1,8 @@
-package com.binaryconvert;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
+import java.lang.*;
 
 public class BinaryConvertRunner {
 
@@ -15,6 +15,11 @@ public class BinaryConvertRunner {
     private List<String> rawInstructions = new ArrayList<>();
     private List<Instruction> parsedInstructions = new ArrayList<>();
 
+    public static boolean isBlank(String str)
+    {
+        return str.trim().isEmpty();
+    }
+
     public void run(){
         Scanner sc = getScanner(args);
         int pcCount = 0;
@@ -25,7 +30,7 @@ public class BinaryConvertRunner {
             String strippedLine = stripComments(rawLine.replaceAll("\\s+",""));
             // returns the line without the label
             strippedLine = processLabels(pcCount, strippedLine);
-            if(!strippedLine.isBlank()) {
+            if(!isBlank(strippedLine)) {
                 rawInstructions.add(strippedLine);
                 pcCount += 1;
             }
@@ -33,7 +38,7 @@ public class BinaryConvertRunner {
         pcCount = 0;
         for(String rawLine : rawInstructions){
             // get everything before the comment
-            if(!rawLine.isBlank()){
+            if(!isBlank(rawLine)){
                 Instruction ins = InstructionFactory.createInstruction(pcCount, rawLine);
                 parsedInstructions.add(ins);
                 pcCount += 1;

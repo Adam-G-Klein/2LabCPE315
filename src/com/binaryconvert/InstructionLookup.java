@@ -1,11 +1,10 @@
-package com.binaryconvert;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class InstructionLookup {
 
-    private static Map<String,String> opLookup = new HashMap<>(){{
+    private static Map<String,String> opLookup = new HashMap<String,String>(){{
         put("and", "000000");
         put("or", "000000");
         put("add", "000000");
@@ -22,7 +21,7 @@ public class InstructionLookup {
         put("jal", "000011");
     }};
 
-    private static Map<String,String> funcLookup = new HashMap<>(){{
+    private static Map<String,String> funcLookup = new HashMap<String,String>(){{
         put("and", "100100");
         put("or", "100101");
         put("add", "100000");
@@ -32,7 +31,7 @@ public class InstructionLookup {
         put("jr", "001000");
     }};
 
-    private static Map<String,String> regLookup = new HashMap<>(){{
+    private static Map<String,String> regLookup = new HashMap<String,String>(){{
         put("$zero", "00000");
         put("$0", "00000");
         put("$at", "00001");

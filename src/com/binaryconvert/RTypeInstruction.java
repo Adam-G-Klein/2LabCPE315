@@ -1,4 +1,3 @@
-package com.binaryconvert;
 
 public class RTypeInstruction implements Instruction {
     /***

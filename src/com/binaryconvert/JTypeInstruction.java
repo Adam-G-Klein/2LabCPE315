@@ -1,4 +1,3 @@
-package com.binaryconvert;
 
 public class JTypeInstruction implements Instruction {
     /***

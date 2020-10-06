@@ -1,7 +1,7 @@
-package com.binaryconvert;
 
 import java.util.Arrays;
 import java.util.List;
+import java.lang.*;
 
 public class InstructionFactory {
 
@@ -12,6 +12,11 @@ public class InstructionFactory {
     private static final List<String> branchTypes = Arrays.asList("beq", "bne");
     private static final List<String> shiftTypes = Arrays.asList("sll");
     private static final List<String> memTypes = Arrays.asList("sw", "lw");
+    
+    public static boolean isBlank(String str)
+    {
+        return str.trim().isEmpty();
+    }
 
     public static Instruction createInstruction(Integer pcCount, String instructionLine){
         String ins = getInsFromLine(instructionLine);
@@ -27,11 +32,13 @@ public class InstructionFactory {
             return new BranchTypeInstruction(ins, instructionLine, pcCount);
         if(shiftTypes.contains(ins))
             return new ShiftTypeInstruction(ins, instructionLine);
+        if(memTypes.contains(ins))
+            return new MemTypeInstruction(ins, instructionLine);
         return new InvalidInstruction(ins);
     }
 
     public static String getInsFromLine(String instructionLine){
-        if(instructionLine == null || instructionLine.isBlank()){
+        if(instructionLine == null || isBlank(instructionLine)){
             // return null to get to invalid instruction case
             return null;
         }
