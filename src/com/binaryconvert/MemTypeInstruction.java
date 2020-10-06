@@ -17,14 +17,14 @@ public class MemTypeInstruction implements Instruction {
         rt = tokens[0].substring(ins.length());
         String[] subTokens = tokens[1].split("\\(");
         offset = subTokens[0];
-        rs = subTokens[1].substring(subTokens[1].length());
+        rs = subTokens[1].substring(0, subTokens[1].length() - 1);
 
     }
 
     public String toBinary(){
         StringBuilder res = new StringBuilder();
-        res.append(InstructionLookup.getOpCode(ins));
-        res.append(rs + " ");
+        res.append(InstructionLookup.getOpCode(ins) +" ");
+        res.append(InstructionLookup.getReg(rs) + " ");
         res.append(InstructionLookup.getReg(rt) + " ");
         res.append(DecimalToBinary.convertToBinary(offset, 16));
         return res.toString();
